@@ -47,3 +47,21 @@ This prevents excessive pressure on the pen tip and protects the servo gears fro
 
 ![Wiring diagram](images/Circuit_Diagram.png)  
 ---
+
+## 💾 Programming Assignment 1 — Square and Inscribed Circle
+
+This is the **first programming assignment implemented for the Arduino 2D Pen Plotter project**.  
+Its goal is to verify the synchronization of both stepper motors and demonstrate precise two-axis motion by drawing a **square followed by an inscribed circle**.
+
+The code uses the [AccelStepper](https://www.airspayce.com/mikem/arduino/AccelStepper/) library in **FULL4WIRE mode** to drive two 28BYJ-48 motors via ULN2003 driver boards.  
+
+| Section | Purpose |
+|----------|----------|
+| **Config** | Defines motion parameters such as steps per side (`SIDE_STEPS = 4000`), motor directions (`DIR_X`, `DIR_Y`), and motion tuning (`MAX_SPEED`, `ACCEL`). |
+| **Motors setup** | Two `AccelStepper` objects are created—one for each axis—with pins matching the ULN2003 driver connections. |
+| **`moveToXY_blocking()`** | Core function that performs synchronized absolute moves by calling `X.run()` and `Y.run()` until both reach target positions. |
+| **`setup()`** | Initializes motors, sets speed/acceleration, resets positions, and executes the entire motion sequence: a square followed by an inscribed circle. |
+| **`loop()`** | Empty — all drawing occurs once during setup. |
+
+---
+
