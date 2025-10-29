@@ -65,3 +65,35 @@ The code uses the [AccelStepper](https://www.airspayce.com/mikem/arduino/AccelSt
 
 ---
 
+## 💾 Programming Assignment 2 — Autopen Text Writing in D’Nealian Cursive
+
+This is the **final programming assignment** of the “Making Intelligent Things” project.  
+The task, as specified in the course handout, was to **create an autopen program** that writes text typed into the Arduino IDE **Serial Monitor** in *D’Nealian cursive*.
+
+The implementation supports:
+- **At least 15 lowercase letters** (`d e f h k l m n p r t u v w x`) - we can easily add the other letters.
+- **Whitespace** and **line breaks**
+- Up to 40 characters total per console input, with line wrapping after 7 characters
+
+Letters in each word are **smoothly connected**, and the **pen lifts** between strokes (such as for ‘i’ or ‘x’) to mimic real cursive handwriting.
+
+This assignment combines every subsystem of the plotter:
+| Module | Description |
+|---------|-------------|
+| **Stepper control** | Handles synchronized XY movement for precise character tracing |
+| **Servo actuation** | Lifts or lowers the pen between strokes (`penUp()` / `penDown()`) |
+| **Serial interface** | Receives characters from Serial Monitor input |
+| **Font data** | Stored in [`letters_all.h`](code/letters_all.h) — coordinate arrays extracted from SVG letters |
+| **Plot logic** | Converts SVG units to stepper steps with calibrated scale and spacing |
+
+---
+
+### 🧩 SVG → Arduino Pipeline
+
+1. A Python utility [`extract_letters_batch.py`](code/extract_letters_batch.py) converts vector paths from a reference SVG alphabet into arrays of (x, y) coordinates.
+2. The raw coordinates were **manually adjusted and rescaled** to align all glyphs on a common baseline and spacing — resulting in the final [`letters_all.h`](code/letters_all.h) file.
+3. The Arduino firmware reads these arrays from PROGMEM and draws them sequentially as the user types.
+
+This fine-tuning ensures that **words appear evenly aligned and continuous** when drawn in one line, avoiding uneven jumps or overlaps between letters.
+
+
