@@ -1,4 +1,4 @@
-# 🖊️ Arduino 2D Pen Plotter
+# Arduino 2D Pen Plotter
 
 A compact two-axis **Arduino-driven pen plotter** that draws shapes and text on paper using two stepper motors, timing belts, and a servo-controlled pen-lifting mechanism.
 
@@ -7,7 +7,7 @@ It combines **mechanical design (CAD + laser cutting + 3D printing)** with **emb
 
 ---
 
-## ✨ Overview
+## Overview
 
 The 2D Plotter translates digital drawings into physical motion through:
 - **Two orthogonal linear axes** (X and Y) driven by 28BYJ-48 stepper motors via GT2 belts,  
@@ -16,7 +16,7 @@ The 2D Plotter translates digital drawings into physical motion through:
 
 ---
 
-## 🧠 Hardware Architecture
+## Hardware Architecture
 
 | Category | Component | Function |
 |-----------|------------|-----------|
@@ -33,7 +33,7 @@ External 5 V power avoids overloading the Arduino’s regulator.
 
 ---
 
-## 🧱 Mechanical Design
+## Mechanical Design
 
 The complete mechanical assembly is provided in [`/cad/design.step`](cad/design.step).
 
@@ -43,12 +43,12 @@ This prevents excessive pressure on the pen tip and protects the servo gears fro
 
 ---
 
-## 🧩 Electronics Diagram
+## Electronics Diagram
 
 ![Wiring diagram](images/Circuit_Diagram.png)  
 ---
 
-## 💾 Programming Assignment 1 — Square and Inscribed Circle
+## Programming Assignment 1 — Square and Inscribed Circle
 
 This is the **first programming assignment implemented for the Arduino 2D Pen Plotter project**.  
 Its goal is to verify the synchronization of both stepper motors and demonstrate precise two-axis motion by drawing a **square followed by an inscribed circle**.
@@ -65,7 +65,7 @@ The code uses the [AccelStepper](https://www.airspayce.com/mikem/arduino/AccelSt
 
 ---
 
-## 💾 Programming Assignment 2 — Autopen Text Writing in D’Nealian Cursive
+## Programming Assignment 2 — Autopen Text Writing in D’Nealian Cursive
 
 This is the **final programming assignment** of the “Making Intelligent Things” project.  
 The task, as specified in the course handout, was to **create an autopen program** that writes text typed into the Arduino IDE **Serial Monitor** in *D’Nealian cursive*.
@@ -88,7 +88,7 @@ This assignment combines every subsystem of the plotter:
 
 ---
 
-### 🧩 SVG → Arduino Pipeline
+### SVG → Arduino Pipeline
 
 1. A Python utility [`extract_letters_batch.py`](code/extract_letters_batch.py) converts vector paths from a reference SVG alphabet into arrays of (x, y) coordinates.
 2. The raw coordinates were **manually adjusted and rescaled** to align all glyphs on a common baseline and spacing — resulting in the final [`letters_all.h`](code/letters_all.h) file.
